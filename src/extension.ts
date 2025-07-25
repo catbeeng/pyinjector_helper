@@ -13,14 +13,26 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('pyinjector-helper.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from pyinjector_helper!');
-	});
+	const disposable = vscode.commands.registerCommand(
+		'pyinjector-helper.createInjectorModule',
+		async (uri: vscode.Uri) => {
+			if (!uri || !uri.fsPath) {
+				vscode.window.showWarningMessage(
+					'このコマンドは .py ファイル上で右クリックから実行してください。'
+				);
+				return;
+			}
+			console.log('Received URI:'+ uri);
+			vscode.window.showInformationMessage(
+				`Injector Module を生成します: ${uri.fsPath}`
+			);
+
+			// 今後の処理：ここでテンプレート生成などを行う
+		}
+	);
 
 	context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
