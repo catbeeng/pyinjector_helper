@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+out/
+.vscode-test/
+
+# TypeScript
+*.tsbuildinfo
+
+# VSCode project settings (optional)
+.vscode/
+
+# OS generated
+.DS_Store
+Thumbs.db
