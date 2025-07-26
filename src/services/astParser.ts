@@ -22,7 +22,6 @@ export async function analyzePythonAst(uri: vscode.Uri) {
         const pythonFile = PyModuleAST.fromJson(astJson);
         console.log('PARSED PYTHON:', pythonFile);
 
-        
         // 必要ならここでClassDefなどを探索
     } catch (error) {
         console.error('AST解析エラー:', error);
