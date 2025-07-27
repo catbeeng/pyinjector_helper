@@ -1,19 +1,30 @@
+import { PyArgument } from "./PyArgument";
 import { PyFunction } from "./PyFunction";
 
 export class PyClass {
     constructor(
-        public name: string,
-        public functions: PyFunction[]
+        public readonly name: string,
+        public readonly bases: string[],
+        public readonly functions: Map<string, PyFunction>
     ) { }
 
     static fromObj(obj: any): PyClass {
         const methods = obj.body
             .filter((e: any) => e.name)
-            .map((f: any) => PyFunction.fromObj(f));
-        return new PyClass(obj.name, methods);
+            .map((f: any) => [f.name, PyFunction.fromObj(f)] as [string, PyFunction]);
+        const functions = new Map<string, PyFunction>(methods);
+        const bases = obj.bases.map((b: any) => b.id);
+        const c = new PyClass(obj.name, bases, functions);
+        return c;
     }
 
     getConstructor(): PyFunction | null {
-        return this.functions.find(f => f.name === '__init__') ?? null;
+        return this.functions.get('__init__') ?? null;
+    }
+
+    getConstructorArgs(): PyArgument[] {
+        const constructor = this.getConstructor();
+        if (!constructor) {return [];}
+        return constructor.args;
     }
 }

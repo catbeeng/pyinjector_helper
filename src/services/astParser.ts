@@ -4,10 +4,17 @@ import { promisify } from 'util';
 import * as path from 'path';
 import { extensionPath } from '../context';
 import { PyModuleAST } from '../models/python/PyModuleAST';
+import { PythonFile } from '../models/python/PythonFile';
 
 const execFileAsync = promisify(execFile);
 
-export async function analyzePythonAst(uri: vscode.Uri) {
+export async function analyzePythonAst(uri: vscode.Uri): Promise<PythonFile | null> {
+    if (!uri || !uri.fsPath) {
+        vscode.window.showWarningMessage(
+            'このコマンドは .py ファイル上で右クリックから実行してください。'
+        );
+        return null;
+    }
     const pyScriptPath = path.join(extensionPath, 'python', 'py_ast_dump.py');
 
     try {
@@ -17,14 +24,13 @@ export async function analyzePythonAst(uri: vscode.Uri) {
         ]);
 
         const astJson = JSON.parse(stdout);
-        console.log('AST JSON:', astJson);
         vscode.window.showInformationMessage('AST取得成功！');
-        const pythonFile = PyModuleAST.fromJson(astJson);
-        console.log('PARSED PYTHON:', pythonFile);
-
-        // 必要ならここでClassDefなどを探索
+        const pyModule = PyModuleAST.fromJson(astJson);
+        const pythonFile = new PythonFile(uri.fsPath, pyModule);
+        return pythonFile;
     } catch (error) {
         console.error('AST解析エラー:', error);
         vscode.window.showErrorMessage('ASTの取得に失敗しました');
     }
+    return null;
 }

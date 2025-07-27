@@ -2,8 +2,8 @@ import { PyArgument } from "./PyArgument";
 
 export class PyFunction {
     constructor(
-        public name: string,
-        public args: PyArgument[]
+        public readonly name: string,
+        public readonly args: PyArgument[]
     ) { }
 
     static fromObj(obj: any): PyFunction {
