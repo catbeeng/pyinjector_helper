@@ -1,4 +1,4 @@
-import { PyClass } from '../models/python/PyClass';
+import { PyClass } from '../../models/python/PyClass';
 
 export async function selectTargetInterface(pyClass: PyClass): Promise<string | null> {
     const baseNames = pyClass.bases;

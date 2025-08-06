@@ -1,5 +1,5 @@
-import { PyClass } from "../models/python/PyClass";
-import { PyModuleAST } from "../models/python/PyModuleAST";
+import { PyClass } from "../../models/python/PyClass";
+import { PyModuleAST } from "../../models/python/PyModuleAST";
 
 export async function selectTargetClass(pyModule: PyModuleAST): Promise<PyClass | null> {
     const classNames = [...pyModule.classes.keys()];

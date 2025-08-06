@@ -1,5 +1,5 @@
-import { PyArgument } from "../models/python/PyArgument";
-import { PyImport } from "../models/python/PyImport";
+import { PyArgument } from "../../models/python/PyArgument";
+import { PyImport } from "../../models/python/PyImport";
 
 const INDENT_UNIT_AMOUNT = 4;
 /**
