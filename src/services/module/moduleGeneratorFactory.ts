@@ -4,6 +4,7 @@ import { analyzePythonAst } from "../astParser";
 import { generateImport, getInterfaceImport } from "./importsExtractor";
 import { selectTargetInterface } from "./interfaceSelector";
 import { selectTargetClass } from "./targetClassSelector";
+import { getConfig } from '../configLoader';
 
 export async function createModuleGenerator(uri: vscode.Uri) {
     const pythonFile = await analyzePythonAst(uri);
@@ -15,12 +16,16 @@ export async function createModuleGenerator(uri: vscode.Uri) {
     const imports = pythonFile.getInjectedDependencies(pyClass.name);
     const targetImport = await generateImport(pythonFile, pyClass);
     const interfaceImport = getInterfaceImport(interfaceName, pythonFile);
+    const config = getConfig();
 
     const generator = new ModuleGenerator(
         pyClass,
         imports,
         interfaceName,
         targetImport,
-        interfaceImport);
+        interfaceImport,
+        config.fileName,
+        config.className
+    );
     return generator;
 }

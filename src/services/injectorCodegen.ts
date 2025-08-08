@@ -8,7 +8,7 @@ export async function generateInjectorCode(uri: vscode.Uri) {
 
     const moduleSource = generator.generateSource();
     console.log('生成されたモジュールソース:', moduleSource);
-    await writeProviderModuleToFile(generator.existInterfaceImport, moduleSource);
+    await writeProviderModuleToFile(generator.moduleFileName, moduleSource);
 
 
 }

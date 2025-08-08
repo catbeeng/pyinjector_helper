@@ -1,0 +1,35 @@
+{
+  // =====================================================
+  // Python Injector Helper 設定 (Japanese)
+  // =====================================================
+  "pyInjectorHelper": {
+    // モジュールファイル出力ディレクトリのパス
+    // 例: "src/di/modules"
+    "moduleDir": "src/di/modules",
+    "fileName": {
+      // モジュール名生成前にファイル名から削除する接頭語・接尾語
+      // 例: "_interface$"  service_interface.py → service.py
+      "remove": ["^interface_", "_interface$"],
+      // モジュール名生成時にファイル名へ追加する接頭語
+      // 例: "module_"  service.py → module_service.py
+      "addPrefix": "",
+      // モジュール名生成時にファイル名へ追加する接尾語
+      // 例: "_module"  service.py → service_module.py
+      "addSuffix": "_module"
+    },
+    "className": {
+      // true の場合、クラス名は接頭語・接尾語処理後のファイル名から生成
+      // false の場合、ファイル名とクラス名は独立して処理
+      "deriveFromFileName": true,
+      // モジュール名生成前にクラス名から削除する接頭語・接尾語
+      // 例: "Interface$"  ServiceInterface → Service
+      "remove": ["^Interface", "^interface_", "_interface$", "Interface$"],
+      // モジュール名生成時にクラス名へ追加する接頭語
+      // 例: "Module"  Service → ModuleService
+      "addPrefix": "",
+      // モジュール名生成時にクラス名へ追加する接尾語
+      // 例: "Module"  Service → ServiceModule
+      "addSuffix": "Module"
+    }
+  }
+}

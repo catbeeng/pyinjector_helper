@@ -1,0 +1,35 @@
+{
+  // =====================================================
+  // Python Injector Helper Settings (English)
+  // =====================================================
+  "pyInjectorHelper": {
+    // Module file output directory path.
+    // Example: "src/di/modules"
+    "moduleDir": "src/di/modules",
+    "fileName": {
+      // Patterns to remove from the file name before generating module names.
+      // Example: "_interface$"  service_interface.py → service.py
+      "remove": ["^interface_", "_interface$"],
+      // Prefix to add to the file name when generating module names.
+      // Example: "module_"  service.py → module_service.py
+      "addPrefix": "",
+      // Suffix to add to the file name when generating module names.
+      // Example: "_module"  service.py → service_module.py
+      "addSuffix": "_module"
+    },
+    "className": {
+      // If true, the class name is derived from the file name after prefix/suffix rules.
+      // If false, file name and class name are processed independently.
+      "deriveFromFileName": true,
+      // Patterns to remove from the class name before generating module names.
+      // Example: "Interface$"  ServiceInterface → Service
+      "remove": ["^Interface", "^interface_", "_interface$", "Interface$"],
+      // Prefix to add to the class name when generating module names.
+      // Example: "Module"  Service → ModuleService
+      "addPrefix": "",
+      // Suffix to add to the class name when generating module names.
+      // Example: "Module"  Service → ServiceModule
+      "addSuffix": "Module"
+    }
+  }
+}

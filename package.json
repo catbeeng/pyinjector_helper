@@ -33,6 +33,84 @@
           "group": "navigation"
         }
       ]
+    },
+    "configuration":{
+      "title": "%pyInjectorHelper.configTitle%",
+      "properties": {
+        "pyInjectorHelper":{
+          "type": "object",
+          "properties": {
+            "moduleDir": {
+              "type": "string",
+              "default": "src/di/modules",
+              "markdownDescription": "%pyInjectorHelper.moduleDir.desc%",
+              "order": 1,
+              "scope": "resource"
+            },
+            "fileName": {
+              "type": "object",
+              "properties": {
+                "remove": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "default": ["^interface_", "_interface$"],
+                  "markdownDescription": "%pyInjectorHelper.fileName.remove.desc%",
+                  "order": 2,
+                  "scope": "resource"
+                },
+                "addPrefix": {
+                  "type": "string",
+                  "default": "",
+                  "markdownDescription": "%pyInjectorHelper.fileName.addPrefix.desc%",
+                  "order": 3,
+                  "scope": "resource"
+                },
+                "addSuffix": {
+                  "type": "string",
+                  "default": "_module",
+                  "markdownDescription": "%pyInjectorHelper.fileName.addSuffix.desc%",
+                  "order": 4,
+                  "scope": "resource"
+                }
+              }
+            },
+            "className": {
+              "type": "object",
+              "properties": {
+                "deriveFromFileName": {
+                  "type": "boolean",
+                  "default": true,
+                  "markdownDescription": "%pyInjectorHelper.className.deriveFromFileName.desc%",
+                  "order": 5,
+                  "scope": "resource"
+                },
+                "remove": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "default": ["^Interface", "^interface_", "_interface$", "Interface$"],
+                  "markdownDescription": "%pyInjectorHelper.className.remove.desc%",
+                  "order": 6,
+                  "scope": "resource"
+                },
+                "addPrefix": {
+                  "type": "string",
+                  "default": "",
+                  "markdownDescription": "%pyInjectorHelper.className.addPrefix.desc%",
+                  "order": 7,
+                  "scope": "resource"
+                },
+                "addSuffix": {
+                  "type": "string",
+                  "default": "Module",
+                  "markdownDescription": "%pyInjectorHelper.className.addSuffix.desc%",
+                  "order": 8,
+                  "scope": "resource"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "scripts": {

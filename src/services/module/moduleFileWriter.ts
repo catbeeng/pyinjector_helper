@@ -1,13 +1,12 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs/promises';
-import { PyImport } from '../../models/python/PyImport';
+import { getConfig } from '../configLoader';
 
 export async function writeProviderModuleToFile(
-    interfaceImport: PyImport,
+    moduleFileName: string,
     content: string
 ): Promise<void> {
-    const moduleFileName = deriveModuleFilename(interfaceImport) + '_module';
     const outputDir = await resolveOutputDirectory();
     const workspaceFolder = getWorkspaceFolder();
     console.log('MODULE_FILE:', moduleFileName);
@@ -18,13 +17,6 @@ export async function writeProviderModuleToFile(
     await fs.writeFile(fullPath, content, { encoding: 'utf8' });
 
     vscode.window.showInformationMessage(`モジュールファイルを出力しました: ${fullPath}`);
-}
-
-function deriveModuleFilename(interfaceImport: PyImport): string {
-    const base = interfaceImport.moduleName;
-    return base
-        .replace(/^interface_/, '')
-        .replace(/_interface$/, '');
 }
 
 function getWorkspaceFolder(): vscode.WorkspaceFolder {
@@ -38,7 +30,7 @@ function getWorkspaceFolder(): vscode.WorkspaceFolder {
 async function resolveOutputDirectory(): Promise<string> {
     const config = vscode.workspace.getConfiguration();
     const extraPaths: string[] = config.get('python.analysis.extraPaths') ?? [];
-    const outputDir: string = config.get('python.injectorHelper.moduleDir') ?? 'di/modules';
+    const outputDir: string = getConfig().moduleDir;
 
     // extraPathsとの重複を優先
     const matched = extraPaths.find(p => outputDir.startsWith(normalizePath(p)));
