@@ -1,3 +1,4 @@
+import { assert } from "console";
 import { PyArgument } from "./PyArgument";
 import { PyClass } from "./PyClass";
 import { PyImport } from "./PyImport";
@@ -10,7 +11,6 @@ export class PyModuleAST {
 
     static fromJson(astJson: any): PyModuleAST {
         const imports = new Map<string, PyImport>();
-        console.log('AST_BODY', astJson.body);
         for (const item of astJson.body) {
             if (!item.module || !Array.isArray(item.names)) { continue; }
             const pyImport = PyImport.fromObj(item);
@@ -27,7 +27,13 @@ export class PyModuleAST {
         return new PyModuleAST(imports, new Map(classes));
     }
 
-    getInjectedDependencies(className: string): PyImport[] {
+    public get class(): PyClass {
+        const classNames = [...this.classes.keys()];
+        assert(classNames.length === 1);
+        return this.classes.get(classNames[0])!;
+    }
+
+    public getInjectedDependencies(className: string): PyImport[] {
         const pyClass = this.classes.get(className);
         if (!pyClass) {
             throw new Error(`Class ${className} not found in module AST`);

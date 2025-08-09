@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
 import { ModuleGenerator } from "../../models/python/generateModule/ModuleGenerator";
-import { analyzePythonAst } from "../astParser";
+import { analyzeTargetFile } from "../astParser";
 import { generateImport, getInterfaceImport } from "./importsExtractor";
 import { selectTargetInterface } from "./interfaceSelector";
 import { selectTargetClass } from "./targetClassSelector";
 import { getConfig } from '../configLoader';
 
 export async function createModuleGenerator(uri: vscode.Uri) {
-    const pythonFile = await analyzePythonAst(uri);
+    const pythonFile = await analyzeTargetFile(uri);
     if (!pythonFile) { throw new Error('Pythonファイルの解析に失敗しました'); }
     const pyClass = await selectTargetClass(pythonFile.ast);
     if (!pyClass) { throw new Error('ターゲットクラスの選択に失敗しました'); }

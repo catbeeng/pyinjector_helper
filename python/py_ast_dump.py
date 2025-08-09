@@ -2,6 +2,8 @@
 import ast
 import sys
 import json
+from pathlib import Path
+
 
 class ASTEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -14,14 +16,19 @@ class ASTEncoder(json.JSONEncoder):
         else:
             return str(obj)
 
-def main():
-    filepath = sys.argv[1]
+
+def parse_file(filepath: Path):
     with open(filepath, "r", encoding="utf-8") as f:
         source = f.read()
+    tree = ast.parse(source, filename=str(filepath))
+    return {"path": str(filepath), "ast": tree}
 
-    tree = ast.parse(source, filename=filepath)
-    json_output = json.dumps(tree, cls=ASTEncoder, indent=2)
-    print(json_output)
+
+def main():
+    files = [Path(arg) for arg in sys.argv[1:]]
+    results = [parse_file(f) for f in files]
+    print(json.dumps(results, cls=ASTEncoder))
+
 
 if __name__ == "__main__":
     main()

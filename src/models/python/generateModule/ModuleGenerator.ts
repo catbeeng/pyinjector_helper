@@ -2,8 +2,8 @@ import { assert } from "console";
 import { PyClass } from "../PyClass";
 import { PyImport } from "../PyImport";
 import { ExtensionClassNameConfig, ExtensionFileNameConfig } from "../../../services/configLoader";
-
-const INDENT_UNIT_AMOUNT = 4;
+import { generateImports } from "../../../services/importsGenerator";
+import { formatMultiLineArgs, INDENT_UNIT_AMOUNT } from "../../../services/multiLineArgsFormatter";
 
 export class ModuleGenerator {
 
@@ -65,14 +65,7 @@ class ${this.moduleClassName}(Module):
         if (this.interfaceImport) {
             imports.push(this.interfaceImport);
         }
-        imports.sort((a, b) => a.module.localeCompare(b.module));
-        const lines = imports.flatMap((imp) => {
-            const names = imp.names.map(
-                (n) => n.asname ? `${n.name} as ${n.asname}` : n.name
-            ).join(", ");
-            return `from ${imp.module} import ${names}`;
-        });
-        return lines.join("\n");
+        return generateImports(imports);
     }
 
     private generateParametersWithType(): string {
@@ -81,23 +74,13 @@ class ${this.moduleClassName}(Module):
         const argLines = ["self", ...args.map(arg =>
             arg.annotation ? `${arg.name}: ${arg.annotation}` : arg.name
         )];
-        return this.formatMultilineArgs(argLines, INDENT_UNIT_AMOUNT * 2);
+        return formatMultiLineArgs(argLines, INDENT_UNIT_AMOUNT * 2);
     }
 
     private generateParameters(): string {
         const args = this.pyClass.getConstructorArgs();
         if (args.length === 0) { return ""; }
         const argLines = args.map(arg => arg.name);
-        return this.formatMultilineArgs(argLines, INDENT_UNIT_AMOUNT * 3);
+        return formatMultiLineArgs(argLines, INDENT_UNIT_AMOUNT * 3);
     }
-
-    private formatMultilineArgs(lines: string[], indentWidth: number): string {
-        if (lines.length === 1) { return lines[0]; }
-        const indent = ' '.repeat(indentWidth);
-        const lastIndent = ' '.repeat(indentWidth - INDENT_UNIT_AMOUNT);
-        return "\n" + lines.
-            map((line) => indent + line + ",").
-            join("\n") + "\n" + lastIndent;
-    }
-
 }
