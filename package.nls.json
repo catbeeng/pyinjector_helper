@@ -2,6 +2,7 @@
   "pythonInjectorHelper.configTitle": "Python Injector Helper Settings",
 
   "pyInjectorHelper.moduleDir.desc":"Module file output directory path.  \nExample: `src/di/modules`",
+  "pyInjectorHelper.initializerPath.desc":"Injector initializer file output path  \nnExample: `src/di/injector_initializer.py`",
   "pyInjectorHelper.fileName.remove.desc": "Patterns to remove from the file name before generating module names.  \nExample: `_interface$` `service_interface.py` → `service.py`",
   "pyInjectorHelper.fileName.addSuffix.desc": "Suffix to add to the file name when generating module names.  \nExample: `_module` `service.py` → `service_module.py`",
   "pyInjectorHelper.fileName.addPrefix.desc": "Prefix to add to the file name when generating module names.  \nExample: `module_` `service.py` → `module_service.py`",

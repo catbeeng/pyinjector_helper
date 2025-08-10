@@ -47,6 +47,13 @@
               "order": 1,
               "scope": "resource"
             },
+            "initializerPath": {
+              "type": "string",
+              "default": "src/di/injector_initializer.py",
+              "markdownDescription": "%pyInjectorHelper.initializerPath.desc%",
+              "order": 1,
+              "scope": "resource"
+            },
             "fileName": {
               "type": "object",
               "properties": {

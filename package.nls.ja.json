@@ -2,6 +2,7 @@
   "pyInjectorHelper.configTitle": "Python Injector Helper 設定",
 
   "pyInjectorHelper.moduleDir.desc":"モジュールファイル出力ディレクトリのパス  \n例: `src/di/modules`",
+  "pyInjectorHelper.initializerPath.desc":"Injector 初期化ソースコード出力のパス  \n例: `src/di/injector_initializer.py`",
   "pyInjectorHelper.fileName.remove.desc": "モジュール名生成前にファイル名から削除する接頭語・接尾語。  \n例: `_interface$` `service_interface.py` → `service.py`",
   "pyInjectorHelper.fileName.addPrefix.desc": "モジュール名生成時にファイル名へ追加する接頭語。  \n例: `module_` `service.py` → `module_service.py`",
   "pyInjectorHelper.fileName.addSuffix.desc": "モジュール名生成時にファイル名へ追加する接尾語。  \n例: `_module` `service.py` → `service_module.py`",

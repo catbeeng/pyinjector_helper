@@ -15,6 +15,7 @@ export interface ExtensionClassNameConfig {
 
 interface ExtensionConfig {
     moduleDir: string;
+    initializerPath: string;
     fileName: ExtensionFileNameConfig;
     className: ExtensionClassNameConfig;
 }
@@ -49,6 +50,7 @@ class ConfigManager {
         const config = vscode.workspace.getConfiguration('pyInjectorHelper');
         return {
             moduleDir: config.get<string>('moduleDir', 'src/di/modules'),
+            initializerPath: config.get<string>('initializerPath', 'src/di/injector_initializer.py'),
             fileName: {
                 remove: config.get<string[]>('fileName.remove', ['^interface_', '_interface$']),
                 addPrefix: config.get<string>('fileName.addPrefix', ''),

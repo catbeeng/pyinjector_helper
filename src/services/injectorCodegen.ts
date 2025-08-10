@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { writeProviderModuleToFile } from './module/moduleFileWriter';
 import { createModuleGenerator } from './module/moduleGeneratorFactory';
 import { generateInjectorInitializer } from './initializer/injectorInitializerGenerator';
+import { writeInjectorInitialzier } from './initializer/injectorInitializerWriter';
 
 
 export async function generateInjectorCode(uri: vscode.Uri) {
@@ -11,7 +12,7 @@ export async function generateInjectorCode(uri: vscode.Uri) {
     await writeProviderModuleToFile(generator.moduleFileName, moduleSource);
 
     const initializerSource = await generateInjectorInitializer();
-    console.log("INITIALIZER:" + initializerSource);
+    await writeInjectorInitialzier(initializerSource);
 }
 
 
