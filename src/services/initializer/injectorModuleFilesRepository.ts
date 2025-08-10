@@ -26,7 +26,6 @@ let cacheFilePath: string;
  */
 export function initAstCache(storagePath: string) {
     cacheFilePath = path.join(storagePath, 'ast_cache.json');
-    console.log("CACHE_PATH:" + cacheFilePath);
     if (fs.existsSync(cacheFilePath)) {
         try {
             cache = JSON.parse(fs.readFileSync(cacheFilePath, 'utf8'));

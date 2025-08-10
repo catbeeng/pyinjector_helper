@@ -10,7 +10,6 @@ export async function writeProviderModuleToFile(
 ): Promise<void> {
     const outputDir = await resolveOutputDirectory();
     const workspaceFolder = getWorkspaceFolder();
-    console.log('MODULE_FILE:', moduleFileName);
 
     const fullPath = path.join(workspaceFolder.uri.fsPath, outputDir, `${moduleFileName}.py`);
 
