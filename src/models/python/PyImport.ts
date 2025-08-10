@@ -15,7 +15,11 @@ export class PyImport {
         return this.module.split('.').at(-1) ?? '';
     }
 
-    static fromObj(obj: any): PyImport {
+    public toObj() {
+        return { module: this.module, names: this.names };
+    }
+
+    public static fromObj(obj: any): PyImport {
         return new PyImport(obj.module, obj.names);
     }
 }

@@ -3,11 +3,13 @@
 import * as vscode from 'vscode';
 import { setExtensionPath } from './context';
 import { generateInjectorCode } from './services/injectorCodegen';
+import { initAstCache } from './services/initializer/injectorModuleFilesRepository';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 	setExtensionPath(context);
+	initAstCache(context.storageUri?.fsPath?? ".vscode");
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand

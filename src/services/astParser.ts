@@ -55,7 +55,7 @@ export async function analyzeMultiplePython(files: string[]): Promise<PythonFile
 
         const results = JSON.parse(stdout); // [{ path: "...", ast: {...}}, ...]
         return results.map((r: any) => {
-            const pyModule = PyModuleAST.fromJson(r.ast);
+            const pyModule = PyModuleAST.fromAST(r.ast);
             return new PythonFile(r.path, pyModule);
         });
     } catch (error) {

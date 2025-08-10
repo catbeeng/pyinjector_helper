@@ -4,7 +4,15 @@ export class PyArgument {
         public annotation: string | null
     ) { }
 
-    static fromObj(obj: any): PyArgument {
+    public toObj() {
+        return { name: this.name, annotation: this.annotation };
+    }
+
+    public static fromObj(obj: any): PyArgument {
+        return new PyArgument(obj.name, obj.annotation);
+    }
+
+    public static fromAST(obj: any): PyArgument {
         return new PyArgument(
             obj.arg,
             obj.annotation?.id ?? null  // 型アノテーション名
