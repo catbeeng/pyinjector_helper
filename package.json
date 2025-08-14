@@ -1,16 +1,35 @@
 {
   "name": "pyinjector-helper",
-  "displayName": "pyinjector_helper",
-  "description": "VSCode extension to assist Python Injector module generation.",
-  "version": "0.0.1",
+  "displayName": "Python Injector Helper",
+  "description": "VS Code extension to automate Injector module creation in Python.",
+  "version": "1.0.0",
+  "publisher": "catbeeng",
   "engines": {
     "vscode": "^1.102.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Programming Languages"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
+  "keywords": [
+    "python",
+    "injector",
+    "dependency injection",
+    "di"
+  ],
+  "homepage": "https://github.com/catbeeng/pyinjector_helper#README",
+  "bugs": {
+    "url": "https://github.com/catbeeng/pyinjector_helper/issues"
+  },
+  "galleryBanner": {
+    "color": "#222222",
+    "theme": "dark"
+  },
+  "markdown": "github",
+  "license": "MIT",
+  "icon": "images/icon.png",
   "contributes": {
     "commands": [
       {
@@ -34,10 +53,10 @@
         }
       ]
     },
-    "configuration":{
+    "configuration": {
       "title": "%pyInjectorHelper.configTitle%",
       "properties": {
-        "pyInjectorHelper":{
+        "pyInjectorHelper": {
           "type": "object",
           "properties": {
             "moduleDir": {
@@ -59,8 +78,13 @@
               "properties": {
                 "remove": {
                   "type": "array",
-                  "items": { "type": "string" },
-                  "default": ["^interface_", "_interface$"],
+                  "items": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "^interface_",
+                    "_interface$"
+                  ],
                   "markdownDescription": "%pyInjectorHelper.fileName.remove.desc%",
                   "order": 2,
                   "scope": "resource"
@@ -93,8 +117,15 @@
                 },
                 "remove": {
                   "type": "array",
-                  "items": { "type": "string" },
-                  "default": ["^Interface", "^interface_", "_interface$", "Interface$"],
+                  "items": {
+                    "type": "string"
+                  },
+                  "default": [
+                    "^Interface",
+                    "^interface_",
+                    "_interface$",
+                    "Interface$"
+                  ],
                   "markdownDescription": "%pyInjectorHelper.className.remove.desc%",
                   "order": 6,
                   "scope": "resource"
@@ -145,9 +176,15 @@
     "esbuild": "^0.25.3",
     "eslint": "^9.25.1",
     "npm-run-all": "^4.1.5",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vscode-nls-dev": "^4.0.4"
   },
   "dependencies": {
-    "child_process": "^1.0.2"
+    "child_process": "^1.0.2",
+    "vscode-nls": "^5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/catbeeng/pyinjector_helper"
   }
 }

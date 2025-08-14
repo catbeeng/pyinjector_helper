@@ -1,13 +1,19 @@
 {
   "pyInjectorHelper.configTitle": "Python Injector Helper 設定",
-
-  "pyInjectorHelper.moduleDir.desc":"モジュールファイル出力ディレクトリのパス  \n例: `src/di/modules`",
-  "pyInjectorHelper.initializerPath.desc":"Injector 初期化ソースコード出力のパス  \n例: `src/di/injector_initializer.py`",
+  "pyInjectorHelper.moduleDir.desc": "モジュールファイル出力ディレクトリのパス  \n例: `src/di/modules`",
+  "pyInjectorHelper.initializerPath.desc": "Injector 初期化ソースコード出力のパス  \n例: `src/di/injector_initializer.py`",
   "pyInjectorHelper.fileName.remove.desc": "モジュール名生成前にファイル名から削除する接頭語・接尾語。  \n例: `_interface$` `service_interface.py` → `service.py`",
   "pyInjectorHelper.fileName.addPrefix.desc": "モジュール名生成時にファイル名へ追加する接頭語。  \n例: `module_` `service.py` → `module_service.py`",
   "pyInjectorHelper.fileName.addSuffix.desc": "モジュール名生成時にファイル名へ追加する接尾語。  \n例: `_module` `service.py` → `service_module.py`",
   "pyInjectorHelper.className.remove.desc": "モジュール名生成前にクラス名から削除する接頭語・接尾語。  \n例: `Interface$` `ServiceInterface` → `Service`",
   "pyInjectorHelper.className.addPrefix.desc": "モジュール名生成時にクラス名へ追加する接頭語。  \n例: `Module` `Service` → `ModuleService`",
   "pyInjectorHelper.className.addSuffix.desc": "モジュール名生成時にクラス名へ追加する接尾語。  \n例: `Module` `Service` → `ServiceModule`",
-  "pyInjectorHelper.className.deriveFromFileName.desc": "true の場合、クラス名は接頭語・接尾語処理後のファイル名から生成します。false の場合、ファイル名とクラス名は独立して処理されます。"
+  "pyInjectorHelper.className.deriveFromFileName.desc": "true の場合、クラス名は接頭語・接尾語処理後のファイル名から生成します。false の場合、ファイル名とクラス名は独立して処理されます。",
+
+  "failedAstParse": "python ast による解析に失敗しました。",
+  "outputInjectorInitializer": "Injector 初期化コードを出力しました：{0}({1})",
+  "outputModuleFile": "Module コードを出力しました：{0}({1})",
+  "selectOutputBasePath": "出力先ベースパスを選択してください（python.analysis.extraPaths）",
+  "selectClass": "クラスを選択してください",
+  "selectInterface": "インターフェースを選択してください"
 }

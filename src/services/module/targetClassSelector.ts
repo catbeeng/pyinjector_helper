@@ -1,5 +1,6 @@
 import { PyClass } from "../../models/python/PyClass";
 import { PyModuleAST } from "../../models/python/PyModuleAST";
+import { localization } from "../localization";
 
 export async function selectTargetClass(pyModule: PyModuleAST): Promise<PyClass | null> {
     const classNames = [...pyModule.classes.keys()];
@@ -17,7 +18,7 @@ async function promptClassSelection(classNames: string[]): Promise<string | unde
     // VSCodeの選択UI（QuickPick）を使う場合:
     const vscode = await import('vscode');
     return await vscode.window.showQuickPick(classNames, {
-        placeHolder: 'クラスを選択してください',
+        placeHolder: localization.selectClass(),
         canPickMany: false
     });
 }

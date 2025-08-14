@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import { getConfig } from '../configLoader';
 import { getWorkspaceFolder } from '../workspaceService';
+import { localization } from '../localization';
 
 export async function writeProviderModuleToFile(
     moduleFileName: string,
@@ -16,7 +17,7 @@ export async function writeProviderModuleToFile(
     await fs.mkdir(path.dirname(fullPath), { recursive: true });
     await fs.writeFile(fullPath, content, { encoding: 'utf8' });
 
-    vscode.window.showInformationMessage(`モジュールファイルを出力しました: ${fullPath}`);
+    vscode.window.showInformationMessage(localization.outputModuleFile(path.basename(fullPath), fullPath));
 }
 
 
@@ -33,7 +34,7 @@ async function resolveOutputDirectory(): Promise<string> {
     // 複数extraPathがある場合は選択
     if (extraPaths.length > 1) {
         const selected = await vscode.window.showQuickPick(extraPaths, {
-            placeHolder: '出力先ベースパスを選択してください（python.analysis.extraPaths）',
+            placeHolder: localization.selectOutputBasePath(),
         });
         if (selected) {return path.join(selected, outputDir);}
     }

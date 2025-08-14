@@ -1,4 +1,5 @@
 import { PyClass } from '../../models/python/PyClass';
+import { localization } from '../localization';
 
 export async function selectTargetInterface(pyClass: PyClass): Promise<string | null> {
     const baseNames = pyClass.bases;
@@ -15,7 +16,7 @@ async function promptInterfaceSelection(baseNames: string[]): Promise<string | u
     // VSCodeの選択UI（QuickPick）を使う場合:
     const vscode = await import('vscode');
     return await vscode.window.showQuickPick(baseNames, {
-        placeHolder: 'インターフェースを選択してください',
+        placeHolder: localization.selectInterface(),
         canPickMany: false
     });
 }

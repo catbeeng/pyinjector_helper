@@ -9,5 +9,12 @@
   "pyInjectorHelper.className.remove.desc": "Patterns to remove from the class name before generating module names.  \nExample: `Interface$` `ServiceInterface` → `Service`",
   "pyInjectorHelper.className.addSuffix.desc": "Suffix to add to the class name when generating module names.  \nExample: `Module` `Service` → `ServiceModule`",
   "pyInjectorHelper.className.addPrefix.desc": "Prefix to add to the class name when generating module names.  \nExample: `Module` `Service` → `ModuleService`",
-  "pyInjectorHelper.className.deriveFromFileName.desc": "If true, the class name is derived from the file name after applying prefix/suffix rules.  \nIf false, file name and class name are processed independently."
+  "pyInjectorHelper.className.deriveFromFileName.desc": "If true, the class name is derived from the file name after applying prefix/suffix rules.  \nIf false, file name and class name are processed independently.",
+
+  "failedAstParse": "Failed to analyze using Python AST.",
+  "outputInjectorInitializer": "Injector initialization code has been generated: {0}({1})",
+  "outputModuleFile": "Module code has been generated: {0}({1})",
+  "selectOutputBasePath": "Please select the base output path (python.analysis.extraPaths).",
+  "selectClass": "Please select a class.",
+  "selectInterface": "Please select an interface."
 }

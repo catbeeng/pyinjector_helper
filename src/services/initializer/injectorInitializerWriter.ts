@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import { getConfig } from '../configLoader';
 import { getWorkspaceFolder } from '../workspaceService';
+import { localization } from '../localization';
 
 export async function writeInjectorInitialzier(content: string): Promise<void> {
     const outputPath = await resolveOutputPath();
@@ -13,7 +14,7 @@ export async function writeInjectorInitialzier(content: string): Promise<void> {
     await fs.mkdir(path.dirname(fullPath), { recursive: true });
     await fs.writeFile(fullPath, content, { encoding: 'utf8' });
 
-    vscode.window.showInformationMessage(`Injector 初期化ファイルを出力しました: ${fullPath}`);
+    vscode.window.showInformationMessage(localization.outputInjectorInitializer(path.basename(fullPath), fullPath));
 }
 
 async function resolveOutputPath(): Promise<string> {
@@ -28,7 +29,7 @@ async function resolveOutputPath(): Promise<string> {
     // 複数extraPathがある場合は選択
     if (extraPaths.length > 1) {
         const selected = await vscode.window.showQuickPick(extraPaths, {
-            placeHolder: '出力先ベースパスを選択してください（python.analysis.extraPaths）',
+            placeHolder: localization.selectOutputBasePath(),
         });
         if (selected) {return path.join(selected, outputPath);}
     }
