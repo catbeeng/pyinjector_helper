@@ -2,7 +2,7 @@
   "name": "pyinjector-helper",
   "displayName": "Python Injector Helper",
   "description": "VS Code extension to automate Injector module creation in Python.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "publisher": "catbeeng",
   "engines": {
     "vscode": "^1.102.0"
