@@ -1,5 +1,7 @@
 # Python Injector Helper
 
+[日本語](README.jp.md)
+
 ## Overview
 
 This extension supports development using [Injector](https://github.com/python-injector/injector), a dependency injection (DI) framework for Python.

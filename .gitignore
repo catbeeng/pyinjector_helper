@@ -9,6 +9,7 @@ pnpm-debug.log*
 dist/
 out/
 .vscode-test/
+*.vsix
 
 # TypeScript
 *.tsbuildinfo

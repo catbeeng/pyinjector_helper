@@ -1,9 +1,18 @@
-# Change Log
+# Changelog
 
-All notable changes to the "pyinjector-helper" extension will be documented in this file.
+[日本語](CHANGELOG.jp.md)
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+All notable changes to this project will be documented in this file.
+  
+This format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+ 
+Versioning follows [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+---
 
-- Initial release
+## [1.0.0] - 2025-08-14
+### Added
+
+- Added feature to generate Python/Injector Module source code (accessible from the context menu).
+- Added feature to generate and update Injector initialization code (supports differential updates to existing code).
+- Added README and icon for Marketplace publication.
